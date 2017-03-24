@@ -5,7 +5,7 @@
       <pre id="raw">{{ stats }}</pre>
       <!-- Use the component -->
       <svg width="200" height="200">
-        <polygraph :stats="stats"></polygraph>
+        <polygraph :stats="stats"></polygraph>    <!-- 此处为调用组件，并绑定对应数据 -->
       </svg>
       <!-- controls -->
       <div v-for="stat in stats">
@@ -22,12 +22,11 @@
   </main-layout>
 </template>
 
-
 <script>
   import MainLayout from '../layouts/Main.vue'
   import Polygraph from '../components/Polygraph.vue'
 
-// The raw data to observe
+// 此处为调用组件使用的数据，所以要放在调用组件的页面
 var stats = [
   { label: 'A', value: 100 },
   { label: 'B', value: 100 },
@@ -40,10 +39,10 @@ var stats = [
     data: function(){
       return {
         newLabel: '',
-        stats:stats
+        stats:stats   //把数据进行初始化
       }
     },
-    methods: {
+    methods: {  //添加及删除的方法
       add: function (e) {
         e.preventDefault()
         if (!this.newLabel) return
@@ -61,15 +60,13 @@ var stats = [
         }
       }
     },
-    components: {
+    components: {   //组件列表，调用组件
       MainLayout,Polygraph
     }
   }
-
 </script>
 
 <style scoped>
-
   #raw {
       float: right;
       width: 100px;

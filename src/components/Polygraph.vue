@@ -1,7 +1,8 @@
 <template>
   <g>
-    <polygon :points="points"></polygon>
+    <polygon :points="points"></polygon>    <!-- 此处根据points生成对应的polygon -->
     <circle cx="100" cy="100" r="80"></circle>
+    <!-- 此处也会根据数组stats循环输出axis-label组件，axis-label也是自定义组件 -->
     <axis-label
       v-for="(stat, index) in stats"
       :stat="stat"
@@ -11,13 +12,11 @@
   </g>
 </template>
 
-
 <script>
-
   export default {
-    props: ['stats'],
+    props: ['stats'],   //相当于初始化组件的一个参数stats，作为形参存在
     computed: {
-      // a computed property for the polygon's points
+      // 此处根据形参stats生成对应参数points
       points: function () {
         var total = this.stats.length
         return this.stats.map(function (stat, i) {
@@ -27,7 +26,7 @@
       }
     },
     components: {
-      // a sub component for the labels
+      // axis-label组件，此处也可以写成Polygraph组件，但结构简单，可直接用template方式进行编写
       'axis-label': {
         props: {
           stat: Object,
@@ -48,7 +47,7 @@
     }
   }
 
-  // math helper...
+  // 转换函数
   function valueToPoint (value, index, total) {
     var x     = 0
     var y     = -value * 0.8

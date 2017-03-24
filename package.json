@@ -4,6 +4,10 @@
   "description": "A Vue.js project",
   "author": "Garens <haibusoi@gmail.com>",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Garens/vue.git"
+  },
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js"
